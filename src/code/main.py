@@ -9,8 +9,6 @@ from  data import get_train_data, get_test_data
 from  constants import *
 
 def main():
-    debug_("is executing eagerly ?", tf.executing_eagerly())
-    debug_("keras version", keras.__version__)
     preprocessor, model = get_model()
     model.compile(optimizer=keras.optimizers.Adam(0.001), loss = loss_fn, metrics=[QuadraticWeightedKappaMetric(6)], run_eagerly=True)
     model.summary()
@@ -38,11 +36,12 @@ def main():
     sub_df.head()
     sub_df.to_csv(f"{SAVE_PATH}/submission.csv", index=False)
 
-main()
+if __name__ == "__main__":
+    main()
 
 """
 
-Research model size and memory requirements
+TODO: Research model size and memory requirements
 
 """
 
